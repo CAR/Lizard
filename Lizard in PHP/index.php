@@ -43,7 +43,6 @@ include("lizard.php");
 		line-height: 2;
 	}
 </style>
-}
 </head>
 <body class="bg-light">
 <main role="main" class="container">
