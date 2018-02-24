@@ -70,7 +70,8 @@ $keystream = $Lizard->getKeystream();
 
 <h3 class="mt-4">On the Fly Generated Keystream</h3>
 <p>For a given key <code>$key</code> (default input format: array of 120 bits) and initialization vector <code>$iv</code> (default input format: array of 64 bits) an instance of the <code>Lizard</code> class is generated.
-Then, using <code>$Lizard->keystreamGeneration($x)</code> generates <code>$x</code> bits of the keystream which can be used multiple times. Any further execution of <code>$Lizard->keystreamGeneration($y)</code> will return the next <code>$y</code> keystream bits which will follow after the first <code>$x</code> bits.</p>
+Then, using <code>$Lizard->keystreamGeneration($x)</code> generates <code>$x</code> bits of the keystream which can be used multiple times.
+Any further execution of <code>$Lizard->keystreamGeneration($y)</code> will return the next <code>$y</code> keystream bits which will follow after the first <code>$x</code> bits.</p>
 <pre>
 <?php echo preg_replace('#\R+#', '', highlight_string('<?php
 $Lizard = new Lizard($key, $iv);
@@ -84,8 +85,10 @@ $keystream = array_merge($keystream1, $keystream2); // concatenate all 200 bits 
 
 <h2 class="mt-5">Example Values</h2>
 <p>Here, we present four different examples of running Lizard in PHP.</p>
-<p>The first generates a random key $key and random IV $iv and displays the resulting keystream.</p>
-<p>The following three examples are the test vectors given in the Lizard publication. The values appended by "(reference)" displays the reference value, while the rest is computed on the fly by Lizard in PHP. If everything is implemented correctly, these values must match.</p>
+<p>The first generates a random key <code>$key</code> and random IV <code>$iv</code> and displays the resulting keystream.</p>
+<p>The following three examples are the test vectors given in the Lizard publication.
+The values appended by "(reference)" displays the reference value, while the rest is computed on the fly by Lizard in PHP.
+If everything is implemented correctly, these values must match.</p>
 
 <h3 class="mt-4">Random Key and IV</h3>
 <?php
