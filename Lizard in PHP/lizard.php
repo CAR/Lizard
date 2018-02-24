@@ -22,7 +22,7 @@ class Lizard {
 	private $keystream = array();
 
 
-	public function __construct($key, $iv, int $length = 0) {
+	public function __construct($key, $iv, $length = 0) {
 		$this->z[$this->t] = 0;
 		$this->L[$this->t] = 0;
 		$this->Q[$this->t] = 0;
