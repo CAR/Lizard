@@ -3,11 +3,9 @@ include("lizard.php");
 
 $key = "";
 if (isset($_GET['key'])) $key = preg_replace('/[^0-9a-f]/', '', strtolower(trim($_GET['key'])));
-if (strlen($key) != 30) $key = "";
 
 $iv = "";
 if (isset($_GET['iv'])) $iv = preg_replace('/[^0-9a-f]/', '', strtolower(trim($_GET['iv'])));
-if (strlen($iv) != 16) $iv = "";
 
 $minlength = 1;
 $maxlength = 1200;
@@ -19,7 +17,7 @@ elseif ($length > $maxlength) $length = $maxlength;
 $testformjump = "";
 $keystream = "";
 
-if ($key != "" && $iv != "") {
+if (strlen($key) == 30 && strlen($iv) == 16) {
 	$Lizard = new Lizard(Lizard::hex2binArray($key), Lizard::hex2binArray($iv), $length);
 	$keystream = $Lizard->getKeystream();
 
@@ -28,6 +26,8 @@ if ($key != "" && $iv != "") {
 		echo json_encode($keystream);
 		exit;
 	}
+
+	$keystream = "0x".strtoupper(Lizard::binArray2hex($keystream));
 
 	$testformjump = ' onload="location.href=\'#testform\'"';
 }
@@ -40,9 +40,10 @@ elseif ($key == "" && $iv == "") {
 
 	$Lizard = new Lizard($key, $iv, $length);
 	$keystream = $Lizard->getKeystream();
-
+	
 	$key = Lizard::binArray2hex($key);
 	$iv = Lizard::binArray2hex($iv);
+	$keystream = "0x".strtoupper(Lizard::binArray2hex($keystream));
 
 	if (isset($_GET['key']) || isset($_GET['iv']) || isset($_GET['length'])) $testformjump = ' onload="location.href=\'#testform\'"';
 }
@@ -109,7 +110,7 @@ The keystream output length can be chosen between 1 bit and <?php echo $maxlengt
 <p>This form works completely without JavaScript, making it as accessible as possible.
 Hence, you have to check the correctness of the values by yourself.
 Furthermore, you can directly fill the values in the input fields below by passing arguments to the variables <code>key</code>, <code>iv</code>, and <code>length</code> in the adress bar of your browser.
-If no values for key and IV are chosen, they get filled in randomly.</p>
+If no values for key and IV are input at the same time, they get filled with randomly chosen values.</p>
 <form method="get">
 	<div class="form-group row">
 		<label for="key" class="col-sm-2 col-form-label">Key</label>
@@ -117,7 +118,7 @@ If no values for key and IV are chosen, they get filled in randomly.</p>
 			<div class="input-group-prepend">
 				<div class="input-group-text">0x</div>
 			</div>
-			<input type="text" class="form-control" name="key" id="key" maxlength="30" value="<?php echo $key; ?>" placeholder="Enter key" required>
+			<input type="text" class="form-control" name="key" id="key" maxlength="30" value="<?php echo $key; ?>" placeholder="Enter key">
 		</div>
 	</div>
 	<div class="form-group row">
@@ -126,7 +127,7 @@ If no values for key and IV are chosen, they get filled in randomly.</p>
 			<div class="input-group-prepend">
 				<div class="input-group-text">0x</div>
 			</div>
-			<input type="text" class="form-control" name="iv" id="iv" maxlength="16" value="<?php echo $iv; ?>" placeholder="Enter IV" required>
+			<input type="text" class="form-control" name="iv" id="iv" maxlength="16" value="<?php echo $iv; ?>" placeholder="Enter IV">
 		</div>
 	</div>
 	<div class="form-group row">
@@ -140,7 +141,7 @@ If no values for key and IV are chosen, they get filled in randomly.</p>
 	</div>
 	<div class="form-group">
 		<label for="keystream">Resulting Keystream</label>
-		<textarea class="form-control hexinput" id="keystream" rows="<?php echo strlen((string) $maxlength)+1; ?>" readonly>0x<?php echo strtoupper(Lizard::binArray2hex($keystream)); ?></textarea>
+		<textarea class="form-control hexinput" id="keystream" rows="<?php echo strlen((string) $maxlength)+1; ?>" readonly><?php echo $keystream; ?></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
 </form>
