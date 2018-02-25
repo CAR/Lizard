@@ -213,7 +213,7 @@ $Lizard->keystreamGeneration(100);                  // generate 100 bit keystrea
 $keystream1 = $Lizard->getKeystream();
 $Lizard->keystreamGeneration(100);                  // generate next 100 bit keystream
 $keystream2 = $Lizard->getKeystream();
-$keystream = array_merge($keystream1, $keystream2); // concatenate all 200 bits keystream
+$keystream = array_merge($keystream1, $keystream2); // concatenate all 200 keystream bits
 ?>', TRUE)); ?>
 </pre>
 
