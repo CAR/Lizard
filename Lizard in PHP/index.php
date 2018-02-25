@@ -28,8 +28,6 @@ if (strlen($key) == 30 && strlen($iv) == 16) {
 	}
 
 	$keystream = "0x".strtoupper(Lizard::binArray2hex($keystream));
-
-	$testformjump = ' onload="location.href=\'#testform\'"';
 }
 elseif ($key == "" && $iv == "") {
 	$key = array();
@@ -43,10 +41,10 @@ elseif ($key == "" && $iv == "") {
 	
 	$key = Lizard::binArray2hex($key);
 	$iv = Lizard::binArray2hex($iv);
-	$keystream = "0x".strtoupper(Lizard::binArray2hex($keystream));
-
-	if (isset($_GET['key']) || isset($_GET['iv']) || isset($_GET['length'])) $testformjump = ' onload="location.href=\'#testform\'"';
+	$keystream = "0x".strtoupper(Lizard::binArray2hex($keystream));	
 }
+
+if (isset($_GET['key']) || isset($_GET['iv']) || isset($_GET['length'])) $testformjump = ' onload="location.href=\'#testform\'"';
 ?>
 <!DOCTYPE html>
 <html lang="en">
