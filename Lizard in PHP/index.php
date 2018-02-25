@@ -99,8 +99,7 @@ if (isset($_GET['key']) || isset($_GET['iv']) || isset($_GET['length'])) $testfo
 <p class="lead">This is an implementation of the lightweight stream cipher <a href="https://tosc.iacr.org/index.php/ToSC/article/view/584">Lizard</a> in <a href="https://www.php.net">PHP</a>.</p>
 <p>The authors of Lizard are Matthias Hamann, Matthias Krause, and Willi Meier. The author of Lizard in PHP is <a href="https://www.christiangorke.de">Christian A. Gorke</a>.</p>
 
-<a name="testform"></a>
-<h2 class="mt-5">Test Form</h2>
+<h2 class="mt-5"><a name="testform"></a>Test Form</h2>
 <p>Here you can test Lizard in PHP with your own key and initialization vector.
 The keystream will be generated and displayed after you pressed the submit button.</p>
 <p>Input formats must be 120 bit key as 30 hex values and 64 bit IV as 16 hex values.
