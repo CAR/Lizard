@@ -172,5 +172,17 @@ class Lizard {
 		return $hex;
 	}
 
+	public static function hex2binArray($hex) {
+		$bin = array();
+
+		for ($i = 0; $i < strlen($hex); $i++){
+			$t = sprintf("%04b", hexdec($hex[$i]));
+			for ($j = 0; $j < 4; $j++) {
+				$bin[] = (int) $t[$j];
+			}
+		}
+
+		return $bin;
+	}
 }
 ?>
