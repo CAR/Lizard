@@ -8,7 +8,7 @@ $iv = "";
 if (isset($_GET['iv'])) $iv = preg_replace('/[^0-9a-f]/', '', strtolower(trim($_GET['iv'])));
 
 $minlength = 1;
-$maxlength = 1200;
+$maxlength = 10000;
 $length = 128;
 if (isset($_GET['length'])) $length = preg_replace('/[^0-9]/', '', trim($_GET['length']));
 if ($length < $minlength) $length = $minlength;
