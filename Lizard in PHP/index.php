@@ -108,7 +108,8 @@ The keystream will be generated and displayed after you pressed the submit butto
 The keystream output length can be chosen between 1 bit and <?php echo $maxlength; ?> bits.</p>
 <p>This form works completely without JavaScript, making it as accessible as possible.
 Hence, you have to check the correctness of the values by yourself.
-Furthermore, you can directly fill the values in the input fields below by passing arguments to the variables <code>key</code>, <code>iv</code>, and <code>length</code> in the adress bar of your browser.</p>
+Furthermore, you can directly fill the values in the input fields below by passing arguments to the variables <code>key</code>, <code>iv</code>, and <code>length</code> in the adress bar of your browser.
+If no values for key and IV are chosen, they get filled in randomly.</p>
 <form method="get">
 	<div class="form-group row">
 		<label for="key" class="col-sm-2 col-form-label">Key</label>
